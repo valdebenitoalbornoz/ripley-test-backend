@@ -13,7 +13,8 @@ const contactSchema: Schema<IContact> = new Schema({
     phone: String,
     bank: String,
     accountType: String,
-    accountNumber: String
+    accountNumber: String,
+    owner: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 export default model<IContact>('Contact', contactSchema);

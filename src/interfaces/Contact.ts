@@ -1,4 +1,5 @@
 export interface IContact {
+    _id?: string; 
     name: string;
     rut: string;
     email: string;
@@ -6,4 +7,5 @@ export interface IContact {
     bank: string;
     accountType: string;
     accountNumber: string;
+    owner: string;
 }
