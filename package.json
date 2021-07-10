@@ -22,12 +22,14 @@
     "debug": "^4.3.2",
     "express": "^4.17.1",
     "express-winston": "^4.1.0",
+    "mongoose": "^5.13.2",
     "winston": "^3.3.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/debug": "^4.1.6",
     "@types/express": "^4.17.13",
+    "@types/mongoose": "^5.11.97",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
     "source-map-support": "^0.5.19",

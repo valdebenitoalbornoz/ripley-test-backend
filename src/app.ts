@@ -3,7 +3,8 @@ import http from 'http';
 import cors from 'cors'
 
 import { Route } from './config/Route';
-import logger from './config/logs';
+import logger from './config/logger';
+import dbConnection from './config/db';
 
 const PORT = process.env.PORT || 3000;
 
@@ -17,7 +18,8 @@ export class AppServer {
         this.server = http.createServer(this.app);
     }
     /** Initializes app */
-    start() {
+    async start() {
+        await dbConnection();
         this.server.listen(PORT, () => {
             logger.info('Server creado en puerto ' + PORT);
         });
