@@ -6,10 +6,9 @@ export class ContactController {
   /** Add a new contact */
   public addContact = async (req: Request, res: Response) => {
     try {
-      const { body } = req;
-      const { name, rut, email, phone, bank, accountType, accountNumber, owner } = body;
+      const { name, rut, email, phone, bank, accountType, accountNumber, owner } = req.body;
 
-      const exists = await Contact.exists({ bank, accountType, accountNumber, owner });
+      const exists = await Contact.exists({ owner, bank, accountType, accountNumber });
       if (exists) {
         return res.status(200).send({
           done: false,
@@ -24,7 +23,8 @@ export class ContactController {
         phone,
         bank,
         accountType,
-        accountNumber
+        accountNumber,
+        owner
       });
 
       res.status(200).send({
