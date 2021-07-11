@@ -6,6 +6,8 @@ import { Route } from './config/Route';
 import logger from './config/logger';
 import dbConnection from './config/db';
 import { UserRouter } from './routes/User';
+import { ContactRouter } from './routes/Contact';
+import { TransactionRouter } from './routes/Transaction';
 
 const PORT = process.env.PORT || 3000;
 
@@ -36,6 +38,8 @@ export class AppServer {
         
         const routes: Array<Route> = [
             new UserRouter(this.app),
+            new ContactRouter(this.app),
+            new TransactionRouter(this.app)
         ];
         routes.forEach((route: Route) => {
             logger.info(`Routes configured for ${route.getName()}`);

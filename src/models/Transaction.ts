@@ -13,7 +13,11 @@ const TransactionSchema: Schema<ITransaction> = new Schema({
   /** Receiver of the transaction */
   receiver: { type: Schema.Types.ObjectId, ref: 'Contact' },
   /** Amount of transaction */
-  amount: Number
+  amount: Number,
+  /** Origin Account */
+  originAccount: { type: Schema.Types.ObjectId, ref: 'Account' },
+  /** Receiver Account */
+  receiverAccount: { type: Schema.Types.ObjectId, ref: 'Account' },
 });
 
 export default model<ITransaction>('Transaction', TransactionSchema);
