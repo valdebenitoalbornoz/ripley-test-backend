@@ -6,11 +6,19 @@ import Account from '../models/Account';
 import { JWT_PASS } from '../config/settings';
 
 export class UserController {
+  constructor() {}
   /* Registra un usuario para una cuenta */
   public register = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { name, rut, password, email, phone, bank, accountType, accountNumber, owner } = req.body;
+      const { name, rut, password, bank, accountType, accountNumber } = req.body;
 
+      const accountExists = await Account.exists({ bank, accountType, accountNumber });
+      if (accountExists) {
+        return res.status(404).send({
+          done: false,
+          message: 'La cuenta ingresada ya tiene un usuario creado'
+        });
+      }
       const exists = await User.findOne({ rut });
       if (exists) {
         return res.status(404).send({
@@ -48,22 +56,18 @@ export class UserController {
       const { rut, password } = req.body;
       const user = await User.findOne({ rut });
       if (!user || !bcrypt.compareSync(password, user.password)) {
-        return res.status(401)
-            .send({ done: false, message: 'Usuario o contraseña incorrectos' });
+        return res.status(401).send({ done: false, message: 'Usuario o contraseña incorrectos' });
       }
 
       const accounts = await Account.find({ user: user.id });
       if (!accounts || !accounts.length) {
-        return res.status(404)
-            .send({ done: false, message: 'No se encontró ninguna cuenta asociada al usuario' });
+        return res.status(404).send({ done: false, message: 'No se encontró ninguna cuenta asociada al usuario' });
       }
-      const token = jwt.sign(user, JWT_PASS);
+      const token = jwt.sign(user.toObject(), JWT_PASS);
 
-      res.status(200)
-        .send({ done: true, message: `Bienvenida/o ${user.name}`, token, user, accounts });
+      res.status(200).send({ done: true, message: `Bienvenida/o ${user.name}`, token, user, accounts });
     } catch (error) {
-      res.status(500)
-        .send({ done: false, message: 'Ha ocurrido un error' });
+      res.status(500).send({ done: false, message: error.message });
     }
   };
 }

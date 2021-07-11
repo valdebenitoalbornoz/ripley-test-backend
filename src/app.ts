@@ -5,6 +5,7 @@ import cors from 'cors'
 import { Route } from './config/Route';
 import logger from './config/logger';
 import dbConnection from './config/db';
+import { UserRouter } from './routes/User';
 
 const PORT = process.env.PORT || 3000;
 
@@ -33,7 +34,9 @@ export class AppServer {
             methods: [ 'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS' ]
         }));
         
-        const routes: Array<Route> = [];
+        const routes: Array<Route> = [
+            new UserRouter(this.app),
+        ];
         routes.forEach((route: Route) => {
             logger.info(`Routes configured for ${route.getName()}`);
         });

@@ -1,0 +1,1 @@
+export const JWT_PASS = process.env.JWT_PASS || 'joffplhd5r';
