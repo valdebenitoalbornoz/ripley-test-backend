@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 // Model
 import Contact from '../models/Contact';
-import Account from '../models/Account';
 
 export class ContactController {
   /** Add a new contact */
@@ -51,4 +50,5 @@ export class ContactController {
       res.status(500).send({ error });
     }
   };
+
 }

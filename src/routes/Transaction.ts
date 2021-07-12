@@ -2,7 +2,6 @@ import express from "express";
 import { Route } from "../config/Route";
 import { TransactionController } from "../controllers/Transaction";
 import { auth } from '../middlewares/Auth';
-// Validator for express: DOCS: https://express-validator.github.io/docs/
 import { body } from 'express-validator';
 import { validate } from "../middlewares/Validator";
 
@@ -17,8 +16,7 @@ export class TransactionRouter extends Route {
         /** Add Transaction */
         this.app.post('/transaction', [
             auth,
-            body([ '' ]).exists(),
-            body('email').isEmail().optional(),
+            body([ 'receiver', 'amount' ]).exists(),
             validate
         ], controller.addTransaction);
 

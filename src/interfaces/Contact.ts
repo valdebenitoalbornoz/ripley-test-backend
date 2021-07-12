@@ -8,4 +8,5 @@ export interface IContact {
     accountType: string;
     accountNumber: string;
     owner: string;
+    createdAt: string | Date;
 }

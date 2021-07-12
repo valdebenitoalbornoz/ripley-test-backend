@@ -1,4 +1,3 @@
-import { IAccount } from './Account';
 import { IContact } from './Contact';
 import { IUser } from './User';
 
@@ -15,9 +14,4 @@ export interface ITransaction {
   /** Amount of transaction */
   amount: number;
 
-  /** Origin Account */
-  originAccount: string | IAccount;
-  
-  /** Receiver Account */
-  receiverAccount: string | IAccount;
 }

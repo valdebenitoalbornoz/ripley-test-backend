@@ -15,6 +15,8 @@ const contactSchema: Schema<IContact> = new Schema({
     accountType: String,
     accountNumber: String,
     owner: { type: Schema.Types.ObjectId, ref: 'User' }
+}, {
+    timestamps: { createdAt: 'createdAt' }
 });
 
 export default model<IContact>('Contact', contactSchema);

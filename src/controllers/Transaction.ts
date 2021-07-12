@@ -7,10 +7,10 @@ export class TransactionController {
   /** Add a new transaction */
   public addTransaction = async (req: Request, res: Response) => {
     try {
-      const { transactionDate, receiver, amount } = req.body;
+      const { receiver, amount } = req.body;
       const sender = res.locals._user?._id;
       const transaction = await Transaction.create({
-        transactionDate,
+        transactionDate: new Date(),
         receiver,
         amount,
         sender
@@ -79,6 +79,14 @@ export class TransactionController {
         },
         {
           $limit: limit
+        },
+        {
+            $sort: { transactionDate: -1 }
+        },
+        {
+            $project: {
+                'sender.password': 0
+            }
         }
       ]);
       res.status(200).send({ done: true, transactions });
