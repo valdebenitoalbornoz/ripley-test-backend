@@ -18,7 +18,6 @@ export class ContactRouter extends Route {
         this.app.post('/contact', [
             auth,
             body([ 'name', 'rut', 'bank', 'accountNumber', 'accountType']).exists(),
-            body('email').isEmail().optional(),
             validate
         ], controller.addContact);
 
