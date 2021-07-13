@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsc && nodemon src/index.ts",
-    "start": "tsc && nodemon src/index.ts",
+    "start": "npm run build && node build/index.ts",
     "build": "tsc",
     "test": "npm test",
     "postinstall": "npm run tsc"
