@@ -9,9 +9,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsc && nodemon src/index.ts",
-    "start": "npm run build && node build/index.ts",
+    "start": "node build/index.ts",
     "tsc": "tsc",
-    "test": "npm test",
     "postinstall": "npm run tsc"
   },
   "keywords": [
