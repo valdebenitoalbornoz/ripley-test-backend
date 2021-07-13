@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsc && nodemon src/index.ts",
     "build": "tsc",
-    "test": "npm test"
+    "test": "npm test",
+    "postinstall": "npm run tsc"
   },
   "keywords": [
     "API",
