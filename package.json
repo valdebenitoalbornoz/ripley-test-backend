@@ -1,9 +1,13 @@
 {
   "name": "ripley-test-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.14.1"
+  },
   "description": "Api Rest Simulador de transferencias",
   "main": "index.js",
   "scripts": {
+    "dev": "tsc && nodemon src/index.ts",
     "start": "tsc && nodemon src/index.ts",
     "build": "tsc",
     "test": "npm test",
